@@ -1,0 +1,21 @@
+{
+  "name": "social-media-api",
+  "version": "1.0.0",
+  "description": "Social Media Backend Activities",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Ayush Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  }
+}
