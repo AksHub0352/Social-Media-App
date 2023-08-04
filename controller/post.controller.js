@@ -51,7 +51,7 @@ exports.unlikePost =  async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.likes.includes(req.user._id)) {
-      await post.updateOne({ $pull: { likes: req.body.userId } });
+      await post.updateOne({ $pull: { likes: req.user._id } });
       res.status(200).json("Post UnLiked");
     } else {
       res.status(403).json("You have already unliked this Post");
