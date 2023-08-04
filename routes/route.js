@@ -12,6 +12,8 @@ router.use('/like/' , checkuserauth)
 router.use('/unlike/' , checkuserauth)
 router.use('/comment' , checkuserauth)
 router.use('/all_posts' , checkuserauth)
+router.use('/follow/' , checkuserauth)
+router.use('/unfollow/' , checkuserauth)
 
 
 // signup & authenticatin

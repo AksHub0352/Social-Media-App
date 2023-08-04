@@ -66,12 +66,11 @@ exports.unlikePost =  async (req, res) => {
 exports.commentOnPost =  async(req,res)=>{
   try {
     const userPosts = await Post.findById(req.params.id);
-    console.log(userPosts)
     // const comment = new Post.comment
     await userPosts.updateOne({ $push: { comments : {UserId : req.user._id , comment : req.body.comment }}});
     // await user
     userPosts.save()
-    res.status(200).json(userPosts.comments);
+    res.status(200).json({UserId : req.user._id , comment : req.body.comment });
   } catch (err) {
     res.status(500).json(err);
   }

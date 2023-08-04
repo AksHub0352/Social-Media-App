@@ -3,12 +3,12 @@ const bcrypt = require("bcrypt")
 
 //follow a user
 exports.follow = async(req,res)=>{
-    if(req.body.userId !== req.params.id){
+    if(req.user._id.toString() !== req.params.id){
         try{
             const user = await User.findById(req.params.id);
-            const currentUser = await User.findById(req.body.userId);
-            if(!user.followers.includes(req.body.userId)){
-                await user.updateOne({$push : {followers : req.body.userId} })
+            const currentUser = await User.findById(req.user._id);
+            if(!user.followers.includes(req.user._id)){
+                await user.updateOne({$push : {followers : req.user._id} })
                 await currentUser.updateOne({$push : {followings : req.params.id} })
                 res.status(200).json("User has been Followed")
             }else{
@@ -26,12 +26,12 @@ exports.follow = async(req,res)=>{
 
 //unfollow a user
 exports.unfollow = async(req,res)=>{
-    if(req.body.userId !== req.params.id){
+    if(req.user._id.toString() !== req.params.id){
         try{
             const user = await User.findById(req.params.id);
-            const currentUser = await User.findById(req.body.userId);
-            if(user.followers.includes(req.body.userId)){
-                await user.updateOne({$pull : {followers : req.body.userId} })
+            const currentUser = await User.findById(req.user._id.toString());
+            if(user.followers.includes(req.user._id.toString())){
+                await user.updateOne({$pull : {followers : req.user._id.toString()} })
                 await currentUser.updateOne({$pull : {followings : req.params.id} })
                 res.status(200).json("User has been Unfollowed")
             }else{
