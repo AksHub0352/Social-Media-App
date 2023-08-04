@@ -29,9 +29,9 @@ exports.unfollow = async(req,res)=>{
     if(req.user._id.toString() !== req.params.id){
         try{
             const user = await User.findById(req.params.id);
-            const currentUser = await User.findById(req.user._id.toString());
+            const currentUser = await User.findById(req.user._id);
             if(user.followers.includes(req.user._id.toString())){
-                await user.updateOne({$pull : {followers : req.user._id.toString()} })
+                await user.updateOne({$pull : {followers : req.user._id} })
                 await currentUser.updateOne({$pull : {followings : req.params.id} })
                 res.status(200).json("User has been Unfollowed")
             }else{
