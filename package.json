@@ -4,7 +4,8 @@
   "description": "Social Media Backend Activities",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start" : "node index.js"
   },
   "author": "Ayush Kumar",
   "license": "ISC",
